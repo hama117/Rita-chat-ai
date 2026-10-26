@@ -7,7 +7,7 @@ const AUTH_SECRET = process.env.AUTH_SECRET;
 // このアプリが実際に使うモデルは gpt-4.1-nano のみ。
 // クライアントが別モデル（gpt-4 など高額モデル）を送ってきても、
 // サーバー側で必ずこの値に固定し、すり替えを無効化する。
-const ALLOWED_MODEL = 'gpt-4.1-nano';
+const ALLOWED_MODEL = 'gpt-4o-mini';
 const MAX_TOKENS_CAP = 2048;   // 1リクエストあたりの最大出力トークン
 const MAX_MESSAGES = 60;       // 1リクエストあたりの最大メッセージ数
 const MAX_TEXT_CHARS = 100000; // 全メッセージのテキスト合計文字数の上限
