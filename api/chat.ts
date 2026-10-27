@@ -7,7 +7,7 @@ const AUTH_SECRET = process.env.AUTH_SECRET;
 // このアプリが実際に使うモデルは gpt-4.1-nano のみ。
 // クライアントが別モデル（gpt-4 など高額モデル）を送ってきても、
 // サーバー側で必ずこの値に固定し、すり替えを無効化する。
-const ALLOWED_MODEL = 'gpt-4o-mini';
+const ALLOWED_MODEL = 'gpt-6-luna';
 const MAX_TOKENS_CAP = 2048;   // 1リクエストあたりの最大出力トークン
 const MAX_MESSAGES = 60;       // 1リクエストあたりの最大メッセージ数
 const MAX_TEXT_CHARS = 100000; // 全メッセージのテキスト合計文字数の上限
@@ -93,6 +93,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     max_tokens: Math.min(Math.max(requestedMax, 1), MAX_TOKENS_CAP),
     n: 1,
     stream: false,
+    reasoning: { effort: "none" },  // ← これを追加
   };
 
   const apiKey = process.env.OPENAI_API_KEY;
