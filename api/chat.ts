@@ -93,7 +93,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     max_tokens: Math.min(Math.max(requestedMax, 1), MAX_TOKENS_CAP),
     n: 1,
     stream: false,
-    reasoning: { effort: "none" },  // ← これを追加
+    //reasoning: { effort: "none" },  // ← これを追加
   };
 
   const apiKey = process.env.OPENAI_API_KEY;
