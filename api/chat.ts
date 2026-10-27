@@ -90,10 +90,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     model: ALLOWED_MODEL, // ← 必ず固定。高額モデルへのすり替え不可
     messages,
     temperature,
-    max_tokens: Math.min(Math.max(requestedMax, 1), MAX_TOKENS_CAP),
+    max_completion_tokens: Math.min(Math.max(requestedMax, 1), MAX_TOKENS_CAP),
     n: 1,
     stream: false,
-    //reasoning: { effort: "none" },  // ← これを追加
   };
 
   const apiKey = process.env.OPENAI_API_KEY;
