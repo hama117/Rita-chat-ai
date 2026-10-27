@@ -1,10 +1,11 @@
 import { Message, ModelType } from '../types';
 import { getAuthToken } from '../utils/authUtils';
 
-export const DEFAULT_MODEL: ModelType = 'gpt-4.1-nano';
+export const DEFAULT_MODEL: ModelType = 'gpt-6-luna';
 
 export const getModelDisplayName = (model: ModelType): string => {
   const modelDisplayNames: Record<string, string> = {
+    'gpt-6-luna': 'GPT-6 Luna',      // ← 追加
     'gpt-4.1-nano': 'GPT-4.1 Nano',
     'gpt-4o-mini': 'GPT-4o mini',
     'gpt-4': 'GPT-4',
@@ -108,8 +109,8 @@ export async function sendMessageToOpenAI(
   const response = await fetch('/api/chat', {
     method: 'POST',
     headers: authHeaders({ 'Content-Type': 'application/json' }),
-    body: JSON.stringify({ model, messages: formattedMessages, temperature: 0.7, max_tokens: 2048 }),
-  });
+    body: JSON.stringify({ model, messages: formattedMessages }),
+  });  // ← この });  が必要！
 
   if (response.status === 401) {
     throw new Error('認証の有効期限が切れました。再ログインしてください。');
