@@ -89,7 +89,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const safeBody = {
     model: ALLOWED_MODEL, // ← 必ず固定。高額モデルへのすり替え不可
     messages,
-    temperature,
     max_completion_tokens: Math.min(Math.max(requestedMax, 1), MAX_TOKENS_CAP),
     n: 1,
     stream: false,
